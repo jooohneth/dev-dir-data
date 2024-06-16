@@ -18,3 +18,6 @@ def getRecordsWtihMultipleEmails(data, emails):
     # temp.to_csv("output/recordsWithMultipleEmails.csv")
     return temp.index
 
+def swapColumns(data, indexes, colOne, colTwo):
+    data.loc[indexes, [colOne, colTwo]] = data.loc[indexes, [colTwo, colOne]].values
+
