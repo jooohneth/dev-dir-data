@@ -13,4 +13,8 @@ def getMantleLearnRecords(data, emails):
     # temp.to_csv("output/mantleLearnRecords.csv")
     return temp.index
 
+def getRecordsWtihMultipleEmails(data, emails):
+    temp = data[data['teamEmails'].str.contains(",", na=False) == True]
+    # temp.to_csv("output/recordsWithMultipleEmails.csv")
+    return temp.index
 
