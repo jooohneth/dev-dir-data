@@ -1,6 +1,6 @@
 import pandas as pd
 
-data = pd.read_csv("input.csv")
+data = pd.read_csv("./input/mess.csv")
 emails = data["teamEmails"]
 
 def getBadEmails(data, emails):
