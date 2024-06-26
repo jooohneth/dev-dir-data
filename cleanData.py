@@ -27,7 +27,7 @@ swapColumns(data, mantleLearnIndexes, 'Project Name', 'teamEmails')
 badIndexes = getBadEmails(data, emails)
 cleanedData = data.drop(badIndexes)
 
-multipleEmailsIndexes = getRecordsWtihMultipleEmails(cleanedData, emails)
+multipleEmailsIndexes = getRecordsWtihMultipleEmails(cleanedData)
 cleanedData.loc[multipleEmailsIndexes, 'teamEmails'] = cleanedData.loc[multipleEmailsIndexes, 'teamEmails'].str.split(',')
 
 explodedData = cleanedData.explode('teamEmails')
@@ -35,3 +35,6 @@ explodedData = cleanedData.explode('teamEmails')
 uniqueData = explodedData.drop_duplicates(subset='teamEmails', keep='first')
 
 uniqueData['teamEmails'].to_csv("output/cleaned_emails.csv", index=False, header=True)
+
+mantleLearnEmails = uniqueData[uniqueData['Project Name'].str.contains('Mantle Learning Track') == True]['teamEmails']
+mantleLearnEmails.to_csv('output/Q1MantleLearn.csv', index=False)
